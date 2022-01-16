@@ -1,0 +1,165 @@
+using System;
+
+namespace çalışmaformu
+{
+	public enum hafta
+	{
+		pazartesi =1 ,salı ,çarşamba ,perşembe ,cuma ,cumartesi ,pazar
+
+
+	} 
+
+	public class çalışanformu
+	{
+		private long TCNo;
+
+		public long tcno
+		{
+			get
+			{
+				return TCNo;
+			}
+			set
+			{
+				if (value.ToString().Length == 11)
+					TCNo = value;
+				else
+					Console.WriteLine("HATA! TC Kimlik Numarası 11 Haneli Olmalıdır.");
+			}
+		}
+
+		public static void yaş(int yas)
+		{
+
+			if (yas < 18)
+			{
+				Console.WriteLine("Stajyer çalışan ");
+			}
+			else if ( yas < 40)
+			{
+				Console.WriteLine("genç  çalışan ");
+			}
+			else if ( yas < 65)
+			{
+				Console.WriteLine("orta yaşlı çalışan ");
+			}
+			else if (65 <= yas)
+			{
+				Console.WriteLine("yaşlı çalışan");
+			}
+		}
+		public static void öğrenimdurum(int öğrenim)
+        {
+			switch (öğrenim)
+			{
+				case 1:
+					Console.WriteLine("öğrenim durumu yetersiz");
+					break;
+				case 2:
+					Console.WriteLine("öğrenim durumu yetersiz");
+					break;
+				case 3:
+					Console.WriteLine("öğrenim durumu staja yeterli");
+					break;
+				case 4:
+					Console.WriteLine("öğrenim durumu çalışan için yeterli");
+					break;
+				case 5:
+					Console.WriteLine("öğrenim durumu menajerliğe için yeterli");
+					break;
+				case 6:
+					Console.WriteLine("öğrenim durumu yöneticiliğe yeterli");
+					break;
+				default:
+					Console.WriteLine("yanlış değer tekrar deneyiniz");
+					break;
+			}
+
+
+
+		}
+		public static void bakmayükümlü(int byüküm,int maaş)
+        {
+			for (int i = 0; i < byüküm ; i++)
+            {
+
+				maaş = maaş + 300;
+
+
+			}
+			Console.WriteLine("maaşınız :" + maaş);
+		}
+
+		public static void Main(string[] args)
+		{
+			Console.WriteLine("tatil günleri " + hafta.cumartesi + " ve " + hafta.pazar + "dır");
+
+			int maaş = 2000;
+
+			Console.WriteLine("adınızı giriniz");
+			string isim = Console.ReadLine();
+
+			Console.WriteLine("soyadınızı giriniz");
+			string soyİsim = Console.ReadLine();
+
+			Console.WriteLine("tc kimlik numaranızı giriniz");
+			long tcno = Convert.ToInt64(Console.ReadLine());
+			çalışanformu no = new çalışanformu();
+			no.tcno = tcno;
+			Console.WriteLine("kimlik numaranız :" + no.tcno);
+
+			Console.WriteLine("cinsiyetinizi giriniz:erkek - kadın ");
+			string cin = Console.ReadLine();
+			if (cin == "erkek" || cin == "kadın"  ) {
+				Console.WriteLine("cinsiyetiniz :" + cin.ToUpper());
+			}
+			else
+            {
+				Console.WriteLine("geçerli bir cinsiyet giriniz.");
+			}
+
+			Console.WriteLine("yaşınızı giriniz");
+			int yas = Convert.ToInt32(Console.ReadLine());
+			yaş(yas);
+
+			Console.WriteLine("öğrenim durumunuzu giriniz: ilkOkul için 1, ortaOkul için 2, Lise için 3, önlisans için 4,lisans için 5, lisansüstü için 6");
+			int öğrenim = Convert.ToInt32(Console.ReadLine());
+			öğrenimdurum(öğrenim);
+
+			Console.WriteLine("bakmakla yükümlü olduğunuz kişi sayısı :");
+			int byüküm = Convert.ToInt32(Console.ReadLine());
+			bakmayükümlü(byüküm,maaş);
+
+			Console.WriteLine("kaç yıllık iş deneyiminiz olduğunu belirtiniz :");
+			int yıll = Convert.ToInt32(Console.ReadLine());
+
+			while (yıll >= 8)
+            {
+				Console.WriteLine("iş için deneyiminiz yeterince yüksek");
+				maaş += yıll*2;
+				break;
+			}
+
+			Console.WriteLine("aşağıdaki yanıtlardan size en uygun gelen iş ortamını belirtiniz");
+
+			string[] soru = { "paylaşımlı ofis", "sanal ofis", "sabit ofis", "hazır ofis", "ev ofisi", };
+
+			foreach (string s in soru)
+            {
+				Console.WriteLine("      ");
+				Console.WriteLine("{0} ", s);
+			}
+
+			string cevap = Console.ReadLine();
+			if (cevap == "paylaşımlı ofis" || cevap == "sanal ofis" || cevap == "sabit ofis" || cevap == "hazır ofis" || cevap == "ev ofisi")
+			{
+				Console.WriteLine(cevap.toUpper() + "'i seçtiniz.");
+			}
+             
+
+
+		}
+
+
+	}
+}
